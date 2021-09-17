@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import styles from './App.module.css'
+import styles from './App.module.css'
 
 const App = () => {
   const emojiDictionary = {
@@ -18,12 +18,11 @@ const App = () => {
   const [currentEmoji, setCurrentEmoji] = useState('')
   
   function changeEmoji(e) {
-    if(!emojiDictionary[e.target.value]) {
-      setCurrentEmoji('emoji not found')
-    } else {
-      setCurrentEmoji(e.target.value)
-    }
+    (!emojiDictionary[e.target.value] && e.target.value) ? setCurrentEmoji('emoji not found')
+    : setCurrentEmoji(e.target.value)
+
   }
+
   return (
     <div>
       <h2>search the emoji</h2>
