@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+// import styles from './App.module.css'
 
-function App() {
+const App = () => {
+  const emojiDictionary = {
+    '🐶': 'dog',
+    '🐰': 'rabbit',
+    '🐻': 'bear',
+    '🐼': 'panda',
+    '🐯': 'tiger',
+    '🐵': 'monkey',
+    '🕷': 'spider',
+    '🐿': 'squirrel',
+    '🐙': 'octopus',
+    '🦈': 'shark',
+  }
+  const emojis = Object.keys(emojiDictionary)
+  const [currentEmoji, setCurrentEmoji] = useState('')
+  
+  function changeEmoji(e) {
+    if(!emojiDictionary[e.target.value]) {
+      setCurrentEmoji('emoji not found')
+    } else {
+      setCurrentEmoji(e.target.value)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>search the emoji</h2>
+      <input placeholder='Type emoji...' onChange={changeEmoji} />
+      <figure>{currentEmoji}</figure>
+      <p>{currentEmoji && emojiDictionary[currentEmoji]}</p>
+      <div>{emojis.map(emoji => <span onClick={() => setCurrentEmoji(emoji)}>{emoji}</span>)}</div>
     </div>
   );
 }
