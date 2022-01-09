@@ -18,11 +18,10 @@ const App = () => {
   const emojis = Object.keys(emojiDictionary)
   const [currentEmoji, setCurrentEmoji] = useState('')
   
-  function changeEmoji(e) {
-    (!emojiDictionary[e.target.value] && e.target.value) ? setCurrentEmoji('emoji not found')
+  const changeEmoji = e => (!emojiDictionary[e.target.value] && e.target.value) 
+    ? setCurrentEmoji('emoji not found')
     : setCurrentEmoji(e.target.value)
 
-  }
 
   return (
     <div>
